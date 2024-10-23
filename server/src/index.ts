@@ -13,6 +13,7 @@ import activityRoutes from "./routes/activityRoutes";
 import salesDocsRoutes from "./routes/salesDocsRoutes";
 import announcementsRoutes from "./routes/announcementsRoutes";
 import pinsRoutes from "./routes/pinsRoutes";
+import karuteRoutes from "./routes/karuteRoutes";
 
 dotenv.config(); // 最初に呼び出す
 const app = express();
@@ -39,6 +40,7 @@ app.use("/api", performanceRoutes);
 app.use("/api", activityRoutes);
 app.use("/api", salesDocsRoutes);
 app.use("/api", pinsRoutes);
+app.use("/api", karuteRoutes);
 
 // サーバー起動
 app.listen(PORT, () => {
