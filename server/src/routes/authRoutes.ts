@@ -1,7 +1,8 @@
-import { Router } from "express";
-import { login } from "../controllers/authController"; // ルートが正しいことを確認
+// authRoutesファイル
+import express from "express";
+import { login } from "../controllers/authController";
 
-const router = Router();
+const router = express.Router();
 
 router.post("/login", login);
 

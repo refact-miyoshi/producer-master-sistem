@@ -1,0 +1,20 @@
+	売上確認システム
+	端末
+	PC（Windows、Mac） 解像度：1920×1080（フルHD）
+	タブレット(Android、iOS)　解像度：768×1024 (iPad)
+	スマホ(Android、iOS)　解像度：1334×750 (iPhoneSE2)
+	ガラケー　解像度：240×320 (W11H)
+	ブラウザ
+	Google Chrome: バージョン90以上
+	Microsoft Edge: バージョン89以上
+	Safari: バージョン13以上
+
+	生産者管理システム
+	端末
+	PC（Windows、Mac） 解像度：1920×1080（フルHD）
+	タブレット(Android、iOS)　解像度：768×1024 (iPad)
+	ブラウザ
+	Google Chrome: バージョン90以上
+	Microsoft Edge: バージョン89以上
+	Safari: バージョン13以上
+

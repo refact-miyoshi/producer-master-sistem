@@ -52,12 +52,12 @@ export const createProducerRecord = async (req: Request, res: Response) => {
     // Cast the result to 'ResultSetHeader' to access the 'insertId'
     const [result] = await dbConnection.query<mysql.ResultSetHeader>(
       `INSERT INTO producer_records (producer_number, name, birthdate, health_status, address, 
-       business_type, farm_type, farm_scale, main_product, tel, mobile, fax, email, 
+       business_type, farm_type, farm_scale, main_product, tel, mobile, fax, email,
        farming_years, continuation_years, has_successor, employee_count, field_address1, 
-       field_area1, field_address2, field_area2, field_address3, field_area3, 
+       field_area1, field_address2, field_area2, field_address3, field_area3,
        delivery_method, material_supplier, uses_pesticides, annual_sales, everly_sales_year1, 
-       everly_sales_year2, everly_sales_year3, annual_schedule, everly_requests, 
-       other_outlets, remarks) 
+       everly_sales_year2, everly_sales_year3, annual_schedule, everly_requests,
+       other_outlets, remarks)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         producer_number,

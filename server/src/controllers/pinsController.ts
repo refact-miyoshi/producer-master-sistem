@@ -36,17 +36,15 @@ export const createPin = async (
       "INSERT INTO map_pins (lat, lng, color, person_in_charge, status, details) VALUES (?, ?, ?, ?, ?, ?)",
       [lat, lng, color, person_in_charge, status, details]
     );
-    return res
-      .status(201)
-      .json({
-        id: result.insertId,
-        lat,
-        lng,
-        color,
-        person_in_charge,
-        status,
-        details,
-      });
+    return res.status(201).json({
+      id: result.insertId,
+      lat,
+      lng,
+      color,
+      person_in_charge,
+      status,
+      details,
+    });
   } catch (error: any) {
     return res.status(500).json({ error: error.message });
   }

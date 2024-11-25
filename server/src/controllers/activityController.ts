@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import mysql, { RowDataPacket } from "mysql2/promise";
 
+// MySQLデータベースとの接続を作成
 const dbConnection = mysql.createPool({
   host: process.env.DB_HOST as string,
   user: process.env.DB_USER as string,
@@ -9,6 +10,7 @@ const dbConnection = mysql.createPool({
   port: parseInt(process.env.DB_PORT as string, 10),
 });
 
+// 全てのアクティビティを取得する関数
 export const getActivities = async (
   req: Request,
   res: Response
@@ -23,6 +25,7 @@ export const getActivities = async (
   }
 };
 
+// IDを指定して特定のアクティビティを取得する関数
 export const getActivityById = async (
   req: Request,
   res: Response
@@ -43,41 +46,124 @@ export const getActivityById = async (
   }
 };
 
+// 新しいアクティビティを追加する関数
 export const addActivity = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const { name, date, client, method, details } = req.body;
+  const {
+    activity_name,
+    contact_date,
+    sales_person,
+    client_name,
+    contact_method,
+    negotiation_content,
+    angle_impression,
+    remarks,
+    next_meeting_date,
+    next_meeting_comment,
+  } = req.body;
+
   try {
     const [result]: any = await dbConnection.query(
-      "INSERT INTO activities (name, date, client, method, details) VALUES (?, ?, ?, ?, ?)",
-      [name, date, client, method, details]
+      `INSERT INTO activities (
+        activity_name, contact_date, sales_person, client_name, 
+        contact_method, negotiation_content, angle_impression, 
+        remarks, next_meeting_date, next_meeting_comment
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        activity_name,
+        contact_date,
+        sales_person,
+        client_name,
+        contact_method,
+        negotiation_content,
+        angle_impression,
+        remarks,
+        next_meeting_date,
+        next_meeting_comment,
+      ]
     );
-    return res
-      .status(201)
-      .json({ id: result.insertId, name, date, client, method, details });
+
+    return res.status(201).json({
+      id: result.insertId,
+      activity_name,
+      contact_date,
+      sales_person,
+      client_name,
+      contact_method,
+      negotiation_content,
+      angle_impression,
+      remarks,
+      next_meeting_date,
+      next_meeting_comment,
+    });
   } catch (error: any) {
     return res.status(500).json({ error: error.message });
   }
 };
 
+// 特定のアクティビティを更新する関数
 export const updateActivity = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
   const { id } = req.params;
-  const { name, date, client, method, details } = req.body;
+  const {
+    activity_name,
+    contact_date,
+    sales_person,
+    client_name,
+    contact_method,
+    negotiation_content,
+    angle_impression,
+    remarks,
+    next_meeting_date,
+    next_meeting_comment,
+  } = req.body;
+
   try {
     await dbConnection.query(
-      "UPDATE activities SET name = ?, date = ?, client = ?, method = ?, details = ? WHERE id = ?",
-      [name, date, client, method, details, id]
+      `UPDATE activities SET 
+        activity_name = ?, contact_date = ?, sales_person = ?, 
+        client_name = ?, contact_method = ?, negotiation_content = ?, 
+        angle_impression = ?, remarks = ?, next_meeting_date = ?, 
+        next_meeting_comment = ? 
+      WHERE id = ?`,
+      [
+        activity_name,
+        contact_date,
+        sales_person,
+        client_name,
+        contact_method,
+        negotiation_content,
+        angle_impression,
+        remarks,
+        next_meeting_date,
+        next_meeting_comment,
+        id,
+      ]
     );
-    return res.status(200).json({ id, name, date, client, method, details });
+
+    return res.status(200).json({
+      id,
+      activity_name,
+      contact_date,
+      sales_person,
+      client_name,
+      contact_method,
+      negotiation_content,
+      angle_impression,
+      remarks,
+      next_meeting_date,
+      next_meeting_comment,
+    });
   } catch (error: any) {
     return res.status(500).json({ error: error.message });
   }
 };
 
+// 特定のアクティビティを削除する関数
 export const deleteActivity = async (
   req: Request,
   res: Response

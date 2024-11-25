@@ -10,7 +10,7 @@ import {
 const router = Router();
 
 router.get("/activities", getActivities);
-router.get("/activities/:id", getActivityById); // 新しいエンドポイントを追加
+router.get("/activities/:id", getActivityById);
 router.post("/activities", addActivity);
 router.put("/activities/:id", updateActivity);
 router.delete("/activities/:id", deleteActivity);
